@@ -1,6 +1,19 @@
+import Footer from "./Footer";
+import Header from "./Header";
+import HeroSection from "./HeroSection";
+import TaskBoard from "./task/TaskBoard";
+
 function App() {
   return (
-    <h1 className="text-3xl text-red-500 font-bold underline">Hello world!</h1>
+   <>
+   <Header/>
+    <div className="flex flex-col justify-center">
+      <HeroSection/>
+      <TaskBoard/>
+    </div>
+   <Footer/>
+   </>
+  
   );
 }
 
