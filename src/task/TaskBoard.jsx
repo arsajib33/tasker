@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SearchTask from "./SearchTAsk";
+import SearchTask from "./SearchTask";
 import TaskAction from "./TaskAction";
 import TaskList from "./TaskList";
 import AddTaskMOdal from "./AddTaskModal";
@@ -53,6 +53,12 @@ const taskDeleteHandler=(taskId)=>{
   setTasks(deleteItem)
 }
 
+const handleCloseModal=()=>{
+  setTaskToUpdate(null)
+  setShowAddModal(false)
+  
+  
+}
 const onSearch=(searchItem)=>{
 const filtered=tasks.filter((task)=>task.title.toLocaleLowerCase().includes(searchItem.toLocaleLowerCase()))
 setTasks([...filtered])
@@ -60,9 +66,10 @@ setTasks([...filtered])
     return(
 <section className="mb-20" id="tasks">
   {showAddModal && <AddTaskMOdal 
-    onAddClick={()=> setShowAddModal(false)}
+  
     onSave={addTaskHandler}
     taskToUpdate={taskToUpdate}
+    onCloseModal={handleCloseModal}
     />}
   
   <div className="container">
