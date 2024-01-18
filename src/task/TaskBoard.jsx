@@ -47,6 +47,16 @@ const taskEditHandler=(task)=>{
   setShowAddModal(true)
 
 }
+
+const taskDeleteHandler=(taskId)=>{
+  const deleteItem=tasks.filter((task)=>task.id!==taskId)
+  setTasks(deleteItem)
+}
+
+const onSearch=(searchItem)=>{
+const filtered=tasks.filter((task)=>task.title.toLocaleLowerCase().includes(searchItem.toLocaleLowerCase()))
+setTasks([...filtered])
+}
     return(
 <section className="mb-20" id="tasks">
   {showAddModal && <AddTaskMOdal 
@@ -57,12 +67,15 @@ const taskEditHandler=(task)=>{
   
   <div className="container">
     {/* Search Box */}
- <SearchTask/>
+ <SearchTask
+ onSearch={onSearch}
+ />
     {/* Search Box Ends */}
     <div className="rounded-xl border border-[rgba(206,206,206,0.12)] bg-[#1D212B] px-6 py-8 md:px-9 md:py-16">
 <TaskAction onAddClick={()=> setShowAddModal(true)}/>
 <TaskList 
 onEdit={taskEditHandler}
+onDelete={taskDeleteHandler}
 tasks={tasks}/>
     </div>
   </div>
